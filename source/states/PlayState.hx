@@ -1281,7 +1281,7 @@ class PlayState extends MusicBeatState
 				songSpeed = ClientPrefs.getGameplaySetting('scrollspeed');
 		}
 
-		var songData = SONG;
+		var songData: SwagSong = SONG;
 		Conductor.bpm = songData.bpm;
 
 		curSong = songData.song;
