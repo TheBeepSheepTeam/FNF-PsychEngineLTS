@@ -109,19 +109,13 @@ class TitleState extends MusicBeatState
 
 		if(!initialized)
 		{
-			if(FlxG.save.data != null && FlxG.save.data.fullscreen)
-			{
-				FlxG.fullscreen = FlxG.save.data.fullscreen;
-				//trace('LOADED FULLSCREEN SETTING!!');
-			}
+			if (FlxG.save.data != null && ClientPrefs.data.fullscreen) FlxG.fullscreen = ClientPrefs.data.fullscreen;
 			persistentUpdate = true;
 			persistentDraw = true;
 		}
 
 		if (FlxG.save.data.weekCompleted != null)
-		{
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
-		}
 
 		FlxG.mouse.visible = false;
 		#if FREEPLAY
@@ -368,13 +362,16 @@ class TitleState extends MusicBeatState
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
+		if(FlxG.keys.justPressed.ESCAPE && !pressedEnter){
+			FlxG.sound.music.fadeOut(0.3);
+			FlxG.camera.fade(FlxColor.BLACK, 0.5, false, () -> {Sys.exit(0);}, false);
+		}
+
 		#if mobile
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
-			{
 				pressedEnter = true;
-			}
 		}
 		#end
 

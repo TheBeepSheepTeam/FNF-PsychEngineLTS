@@ -364,7 +364,8 @@ class DialogueCharacterEditorState extends MusicBeatState implements PsychUIEven
 			char.frames = Paths.getSparrowAtlas('dialogue/' + character.jsonFile.image);
 			char.jsonFile = character.jsonFile;
 			char.reloadAnimations();
-			char.setGraphicSize(Std.int(char.width * DialogueCharacter.DEFAULT_SCALE * character.jsonFile.scale));
+			char.scale.set(DialogueCharacter.DEFAULT_SCALE * character.jsonFile.scale, DialogueCharacter.DEFAULT_SCALE * character.jsonFile.scale);
+
 			char.updateHitbox();
 		}
 		character.x = DialogueBoxPsych.LEFT_CHAR_X;

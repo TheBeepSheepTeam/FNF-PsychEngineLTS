@@ -71,7 +71,7 @@ import crowplexus.iris.Iris;
 **/
 class PlayState extends MusicBeatState
 {
-	public static var STRUM_X = 42;
+	public static var STRUM_X = 48.5; //perfect centering instead of the x pos being 42
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
@@ -3489,7 +3489,7 @@ class PlayState extends MusicBeatState
 
 		if(spr != null) {
 			spr.playAnim('confirm', true);
-			spr.resetAnim = time;
+			spr.resetAnim = time / playbackRate;
 		}
 	}
 
