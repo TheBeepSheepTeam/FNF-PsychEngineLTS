@@ -625,7 +625,7 @@ class DialogueCharacterEditorState extends MusicBeatState implements PsychUIEven
 		_file.addEventListener(#if desktop Event.SELECT #else Event.COMPLETE #end, onLoadComplete);
 		_file.addEventListener(Event.CANCEL, onLoadCancel);
 		_file.addEventListener(IOErrorEvent.IO_ERROR, onLoadError);
-		_file.browse([#if !mac jsonFilter #end]);
+		_file.browse([jsonFilter]);
 	}
 
 	function onLoadComplete(_):Void
