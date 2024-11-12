@@ -264,12 +264,14 @@ class LuaUtils
 	public static function isOfTypes(value:Any, types:Array<Dynamic>)
 	{
 		for (type in types)
-		{
 			if(Std.isOfType(value, type)) return true;
-		}
 		return false;
 	}
 	
+	public static function typeSupported(value:Dynamic) {
+		return (value == null || isOfTypes(value, [Bool, Int, Float, String, Array]) || Type.typeof(value) == Type.ValueType.TObject);
+	}
+
 	public static function getTargetInstance()
 	{
 		if(PlayState.instance != null) return PlayState.instance.isDead ? GameOverSubstate.instance : PlayState.instance;

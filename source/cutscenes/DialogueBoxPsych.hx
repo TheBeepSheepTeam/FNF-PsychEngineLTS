@@ -122,7 +122,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			var x:Float = LEFT_CHAR_X;
 			var y:Float = DEFAULT_CHAR_Y;
 			var char:DialogueCharacter = new DialogueCharacter(x + offsetPos, y, individualChar);
-			char.scale.set(DialogueCharacter.DEFAULT_SCALE * character.jsonFile.scale, DialogueCharacter.DEFAULT_SCALE * character.jsonFile.scale);
+			char.scale.set(DialogueCharacter.DEFAULT_SCALE * char.jsonFile.scale, DialogueCharacter.DEFAULT_SCALE * char.jsonFile.scale);
 			char.updateHitbox();
 			char.scrollFactor.set();
 			char.alpha = 0.00001;

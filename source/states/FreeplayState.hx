@@ -218,7 +218,10 @@ class FreeplayState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		if(WeekData.weeksList.length < 1)
+		{
+			super.update(elapsed);
 			return;
+		}
 
 		if (FlxG.sound.music.volume < 0.7)
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -438,9 +441,9 @@ class FreeplayState extends MusicBeatState
 
 			LoadingState.prepareToSong();
 			if (FlxG.keys.pressed.SHIFT){
-				LoadingState.loadAndSwitchState(new ChartingState());
+				LoadingState.loadAndSwitchState(new states.editors.ChartingState());
 			}else{
-				LoadingState.loadAndSwitchState(new PlayState());
+				LoadingState.loadAndSwitchState(new states.PlayState());
 			}
 			#if !SHOW_LOADING_SCREEN FlxG.sound.music.stop(); #end
 			stopMusicPlay = true;
