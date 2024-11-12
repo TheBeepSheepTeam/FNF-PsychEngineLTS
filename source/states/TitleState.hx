@@ -45,10 +45,6 @@ typedef TitleData =
 
 class TitleState extends MusicBeatState
 {
-	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
-	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
-	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
-
 	public static var initialized:Bool = false;
 
 	var credGroup:FlxGroup = new FlxGroup();
@@ -82,12 +78,6 @@ class TitleState extends MusicBeatState
 		super.create();
 		Paths.clearUnusedMemory();
 
-		if(!initialized)
-		{
-			ClientPrefs.loadPrefs();
-			Language.reloadPhrases();
-		}
-
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		#if CHECK_FOR_UPDATES
@@ -116,15 +106,9 @@ class TitleState extends MusicBeatState
 
 		if(!initialized)
 		{
-			if (FlxG.save.data != null && ClientPrefs.data.fullscreen) FlxG.fullscreen = ClientPrefs.data.fullscreen;
 			persistentUpdate = true;
 			persistentDraw = true;
 		}
-
-		if (FlxG.save.data.weekCompleted != null)
-			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
-
-		FlxG.mouse.visible = false;
 		
 		#if sys
 		if (!initialized && Argument.parse(Sys.args()))
@@ -134,15 +118,8 @@ class TitleState extends MusicBeatState
 			return;
 		}
 		#end
-		
-		if(FlxG.save.data.flashing == null && !FlashingState.leftState)
-		{
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true;
-			MusicBeatState.switchState(new FlashingState());
-		}
-		else
-			startIntro();
+
+		startIntro();
 	}
 
 	var logoBl:FlxSprite;

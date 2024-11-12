@@ -42,7 +42,7 @@ class MusicBeatState extends FlxState
 
 	public function initPsychCamera():PsychCamera
 	{
-		var camera = new PsychCamera();
+		var camera:PsychCamera = new PsychCamera();
 		FlxG.cameras.reset(camera);
 		FlxG.cameras.setDefaultDrawTarget(camera, true);
 		_psychCameraInitialized = true;
