@@ -30,13 +30,11 @@ class InitState extends MusicBeatState
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new FlashingState());
 		}
-		eMusicBeatState.switchState(new TitleState());
+		MusicBeatState.switchState(new TitleState());
 	}
 
 	function _doSetup()
 	{
-		_setupMods();
-
 		ClientPrefs.loadPrefs();
         Language.reloadPhrases();
 
