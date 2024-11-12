@@ -2,6 +2,10 @@ package states;
 
 import backend.WeekData;
 
+#if sys
+import debug.Argument;
+#end
+
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFrame;
@@ -118,11 +122,16 @@ class TitleState extends MusicBeatState
 			StoryMenuState.weekCompleted = FlxG.save.data.weekCompleted;
 
 		FlxG.mouse.visible = false;
-		#if FREEPLAY
-		MusicBeatState.switchState(new FreeplayState());
-		#elseif CHARTING
-		MusicBeatState.switchState(new ChartingState());
-		#else
+		
+		#if sys
+		if (!initialized && Argument.parse(Sys.args()))
+		{
+			initialized = true;
+			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+			return;
+		}
+		#end
+		
 		if(FlxG.save.data.flashing == null && !FlashingState.leftState)
 		{
 			FlxTransitionableState.skipNextTransIn = true;
@@ -130,10 +139,7 @@ class TitleState extends MusicBeatState
 			MusicBeatState.switchState(new FlashingState());
 		}
 		else
-		{
 			startIntro();
-		}
-		#end
 	}
 
 	var logoBl:FlxSprite;
