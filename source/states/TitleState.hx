@@ -38,6 +38,9 @@ typedef TitleData =
 	@:optional var dance_left:Array<Int>;
 	@:optional var dance_right:Array<Int>;
 	@:optional var idle:Bool;
+	@:optional var scale_x:Float;
+	@:optional var scale_y:Float;
+	@:optional var antialiasing:Bool;
 }
 
 class TitleState extends MusicBeatState
@@ -167,7 +170,8 @@ class TitleState extends MusicBeatState
 		logoBl.updateHitbox();
 
 		gfDance = new FlxSprite(gfPosition.x, gfPosition.y);
-		gfDance.antialiasing = ClientPrefs.data.antialiasing;
+		gfDance.antialiasing = gfAntialias;
+		gfDance.scale.set(gfScaleX, gfScaleY);
 		
 		if(ClientPrefs.data.shaders)
 		{
@@ -253,6 +257,10 @@ class TitleState extends MusicBeatState
 	var gfPosition:FlxPoint = FlxPoint.get(512, 40);
 	var logoPosition:FlxPoint = FlxPoint.get(-150, -100);
 	var enterPosition:FlxPoint = FlxPoint.get(100, 576);
+
+	var gfScaleX:Float = 1.0;
+	var gfScaleY:Float = 1.0;
+	var gfAntialias:Bool = true;
 	
 	var useIdle:Bool = false;
 	var musicBPM:Float = 102;
@@ -274,6 +282,10 @@ class TitleState extends MusicBeatState
 					enterPosition.set(titleJSON.startx, titleJSON.starty);
 					musicBPM = titleJSON.bpm;
 					
+					if(titleJSON.scale_x != null && titleJSON.scale_x > 0) gfScaleX = titleJSON.scale_x;
+					if(titleJSON.scale_y != null && titleJSON.scale_y > 0) gfScaleY = titleJSON.scale_y;
+					gfAntialias = (titleJSON.antialiasing == true);
+
 					if(titleJSON.animation != null && titleJSON.animation.length > 0) animationName = titleJSON.animation;
 					if(titleJSON.dance_left != null && titleJSON.dance_left.length > 0) danceLeftFrames = titleJSON.dance_left;
 					if(titleJSON.dance_right != null && titleJSON.dance_right.length > 0) danceRightFrames = titleJSON.dance_right;
