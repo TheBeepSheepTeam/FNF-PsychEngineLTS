@@ -1,8 +1,6 @@
 package debug;
 
 #if sys
-package debug;
-
 import backend.Difficulty;
 import backend.Mods;
 import backend.Song;
@@ -175,9 +173,7 @@ Options:
 			}
 		}
 		else
-		{
 			Mods.currentModDirectory = modFolder;
-		}
 
 		var defaultDiff:Bool = diff == null || (diff != null && diff.toLowerCase().trim() == Difficulty.getDefault().toLowerCase().trim());
 		var jsonName:String = songName + (!defaultDiff ? '-${diff}' : '');
