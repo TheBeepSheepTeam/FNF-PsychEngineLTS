@@ -1187,7 +1187,6 @@ class FunkinLua {
 			}
 			return false;
 		});
-		/*
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String, ?canSkip:Bool = true) {
 			#if VIDEOS_ALLOWED
 			if(FileSystem.exists(Paths.video(videoFile)))
@@ -1216,22 +1215,6 @@ class FunkinLua {
 				else
 					game.startCountdown();
 			});
-			return true;
-			#end
-		});
-		*/
-		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String, canSkip:Bool = true, loopVid:Bool = false) {
-			#if VIDEOS_ALLOWED
-			if(FileSystem.exists(Paths.video(videoFile)) || videoFile.startsWith("https://")) {
-				PlayState.instance.startVideo(videoFile, canSkip, loopVid);
-				return true;
-			} else luaTrace('startVideo: Video file not found: $videoFile', false, false, FlxColor.RED);
-			return false;
-			#else
-			if(PlayState.instance.endingSong) PlayState.instance.endSong();
-			else PlayState.instance.startCountdown();
-
-			luaTrace("startVideo: Platform unsupported for Videos!", false, false, FlxColor.RED);
 			return true;
 			#end
 		});
