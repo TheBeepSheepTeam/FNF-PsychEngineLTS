@@ -1,6 +1,6 @@
 # Friday Night Funkin' - Psych Engine LTS
 
-A version of Psych Engine intended to well... keep the engine alive, while adding a few tweaks, improvements, and fixes to maintain its stability and shit. Also this was made so y'all kiddos can just stop weeping about the fact the engine's gonna get discontinued next month.
+A fork of Psych Engine intended to well... keep the engine alive, while adding a few tweaks, improvements, and fixes to maintain its stability and shit. Also this was made so y'all kiddos can just stop weeping about the fact the engine's gonna get discontinued next month.
 
 ## Credits:
 * charlesisfeline - Maintainer, Programmer.
