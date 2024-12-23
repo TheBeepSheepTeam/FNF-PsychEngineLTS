@@ -18,7 +18,7 @@ class FunkinVideo extends FlxVideoSprite {
 		
 		super();
 		
-		antialiasing = ClientPrefs.globalAntialiasing;
+		antialiasing = ClientPrefs.data.antialiasing;
 		scrollFactor.set();
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 		

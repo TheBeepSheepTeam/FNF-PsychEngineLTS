@@ -1005,15 +1005,9 @@ class PlayState extends MusicBeatState
 
 	function cacheCountdown()
 	{
-		var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-		var introImagesArray:Array<String> = switch(stageUI) {
-			case "pixel": ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel'];
-			case "normal": ["ready", "set" ,"go"];
-			default: ['${uiPrefix}UI/ready${uiPostfix}', '${uiPrefix}UI/set${uiPostfix}', '${uiPrefix}UI/go${uiPostfix}'];
-		}
-		introAssets.set(stageUI, introImagesArray);
-		var introAlts:Array<String> = introAssets.get(stageUI);
-		for (asset in introAlts) Paths.image(asset);
+		var introSprites:Array<String> = getCountdownSpriteNames(stageUI);
+		for (asset in introSprites) Paths.image(asset);
+		for (sound in introSoundNames) Paths.sound(sound + introSoundsSuffix, true, false); // this should cover backwards compat
 	}
 
 	function getCountdownSpriteNames(?givenUI: Null<String>):Array<String> {
@@ -1082,15 +1076,7 @@ class PlayState extends MusicBeatState
 			{
 				characterBopper(tmr.loopsLeft);
 
-				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-				var introImagesArray:Array<String> = switch(stageUI) {
-					case "pixel": ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel'];
-					case "normal": ["ready", "set" ,"go"];
-					default: ['${uiPrefix}UI/ready${uiPostfix}', '${uiPrefix}UI/set${uiPostfix}', '${uiPrefix}UI/go${uiPostfix}'];
-				}
-				introAssets.set(stageUI, introImagesArray);
-
-				var introAlts:Array<String> = introAssets.get(stageUI);
+				var introSprites:Array<String> = getCountdownSpriteNames(stageUI);
 				var antialias:Bool = (ClientPrefs.data.antialiasing && !isPixelStage);
 				var tick:Countdown = THREE;
 
