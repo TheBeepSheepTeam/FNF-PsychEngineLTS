@@ -1014,6 +1014,7 @@ class PlayState extends MusicBeatState
 		introAssets.set(stageUI, introImagesArray);
 		var introAlts:Array<String> = introAssets.get(stageUI);
 		for (asset in introAlts) Paths.image(asset);
+	}
 
 	function getCountdownSpriteNames(?givenUI: Null<String>):Array<String> {
 		if(givenUI == null) givenUI = stageUI;
