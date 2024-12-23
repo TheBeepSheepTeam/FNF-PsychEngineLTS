@@ -226,7 +226,7 @@ class Main extends Sprite
 		*/
 		// 
 		#if officialBuild
-		errMsg += "\nPlease report this error to the GitHub page: https://github.com/ShadowMario/FNF-PsychEngine\n\n> Crash Handler written by: sqirra-rng";
+		errMsg += "\nPlease report this error to the GitHub page: https://github.com/TheBeepSheepTeam/FNF-PsychEngineLTS/issues\n\n> Crash Handler written by: sqirra-rng";
 		#end
 
 		if (!FileSystem.exists("./crash/"))
