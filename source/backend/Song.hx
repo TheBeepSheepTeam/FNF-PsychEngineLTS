@@ -122,7 +122,7 @@ class Song
 				var gottaHitNote:Bool = (note[1] < totalColumns) ? section.mustHitSection : !section.mustHitSection;
 				note[1] = (note[1] % totalColumns) + (gottaHitNote ? 0 : totalColumns);
 
-				if(note[3] != null && !Std.isOfType(note[3], String))
+				if(!Std.isOfType(note[3], String))
 					note[3] = Note.defaultNoteTypes[note[3]]; //compatibility with Week 7 and 0.1-0.3 psych charts
 			}
 		}
