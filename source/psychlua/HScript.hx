@@ -11,6 +11,7 @@ import psychlua.FunkinLua;
 
 #if HSCRIPT_ALLOWED
 import crowplexus.iris.Iris;
+import crowplexus.iris.IrisConfig;
 import crowplexus.iris.ErrorSeverity;
 import crowplexus.hscript.Expr.Error as IrisError;
 
@@ -80,7 +81,8 @@ class HScript extends Iris {
 	override public function new(?parent:Dynamic, file:String = '', ?varsToBring:Any = null) {
 		#if LUA_ALLOWED
 		parentLua = parent;
-		if (parent != null) {
+		if (parent != null)
+		{
 			this.origin = parent.scriptName;
 			this.modFolder = parent.modFolder;
 		}
@@ -96,7 +98,7 @@ class HScript extends Iris {
 			#end
 		}
 	
-		super(null, {name: origin, autoRun: false, autoPreset: false});
+		super(null, new IrisConfig(filePath, false, false));
 
 		var scriptThing:String = file;
 		if(parent == null && file != null) {
@@ -104,7 +106,15 @@ class HScript extends Iris {
 			if(f.contains('/') && !f.contains('\n'))
 				scriptThing = File.getContent(f);
 		}
-		preset();
+
+		try {
+			preset();
+		} catch(e:haxe.Exception) {
+			this.destroy();
+			throw e;
+			return;
+		}
+		
 		Iris.logLevel = hscriptLog;
 		this.scriptCode = scriptThing;
 		this.varsToBring = varsToBring;
